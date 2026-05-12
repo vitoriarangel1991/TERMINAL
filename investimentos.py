@@ -3,10 +3,18 @@ import yfinance as yf
 import json
 import os
 from datetime import datetime
+import base64
+try:
+    from github import Github
+    import streamlit as st
+except ImportError:
+    Github = None
+    st = None
 
 class PortfolioManager:
-    def __init__(self, data_file='portfolio_data.json'):
+    def __init__(self, data_file='portfolio_data.json', repo_name='vitoriaraangel1991/TERMINAL'):
         self.data_file = data_file
+        self.repo_name = repo_name
         self.assets_config = {
             'Ações': {
                 'TICKERS': ['PETR4.SA', 'VALE3.SA', 'ITUB4.SA', 'BBAS3.SA', 'ABEV3.SA', 'WEGE3.SA', 'EGIE3.SA', 'RENT3.SA'],
@@ -43,10 +51,24 @@ class PortfolioManager:
             'target_allocation': {'Ações': 0.40, 'FIIs': 0.40, 'Estratégicos': 0.20},
             'valuation_history': []
         }
+        
+        # Tentar carregar do GitHub primeiro se estiver no Cloud
+        if st and "GITHUB_TOKEN" in st.secrets:
+            try:
+                g = Github(st.secrets["GITHUB_TOKEN"])
+                repo = g.get_repo(self.repo_name)
+                contents = repo.get_contents(self.data_file)
+                self.data = json.loads(contents.decoded_content.decode('utf-8'))
+                # Salvar localmente para cache
+                with open(self.data_file, 'w', encoding='utf-8') as f:
+                    json.dump(self.data, f, indent=4, ensure_ascii=False)
+                return
+            except:
+                pass
+
         if os.path.exists(self.data_file):
             with open(self.data_file, 'r', encoding='utf-8') as f:
                 self.data = json.load(f)
-            # Garantir que chaves novas existam em arquivos antigos
             for key, value in defaults.items():
                 if key not in self.data:
                     self.data[key] = value
@@ -55,8 +77,24 @@ class PortfolioManager:
             self.save_data()
 
     def save_data(self):
+        # Salvar local
         with open(self.data_file, 'w', encoding='utf-8') as f:
             json.dump(self.data, f, indent=4, ensure_ascii=False)
+        
+        # Sincronizar com GitHub se o Token existir
+        if st and "GITHUB_TOKEN" in st.secrets:
+            try:
+                g = Github(st.secrets["GITHUB_TOKEN"])
+                repo = g.get_repo(self.repo_name)
+                contents = repo.get_contents(self.data_file)
+                repo.update_file(
+                    contents.path, 
+                    f"Update portfolio: {datetime.now().strftime('%Y-%m-%d %H:%M')}", 
+                    json.dumps(self.data, indent=4, ensure_ascii=False), 
+                    contents.sha
+                )
+            except Exception as e:
+                st.error(f"Erro ao sincronizar com GitHub: {e}")
 
     def update_targets(self, stock_p, fii_p, strat_p):
         self.data['target_allocation'] = {'Ações': stock_p/100, 'FIIs': fii_p/100, 'Estratégicos': strat_p/100}
