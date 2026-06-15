@@ -5,14 +5,16 @@ import os
 from datetime import datetime
 import base64
 try:
-    from github import Github
+    from github import Github, GithubException
     import streamlit as st
 except ImportError:
     Github = None
+    GithubException = None
     st = None
 
+
 class PortfolioManager:
-    def __init__(self, data_file='portfolio_data.json', repo_name='vitoriaraangel1991/TERMINAL'):
+    def __init__(self, data_file='portfolio_data.json', repo_name='vitoriarangel1991/TERMINAL'):
         self.data_file = data_file
         self.repo_name = repo_name
         self.assets_config = {
@@ -86,13 +88,23 @@ class PortfolioManager:
             try:
                 g = Github(st.secrets["GITHUB_TOKEN"])
                 repo = g.get_repo(self.repo_name)
-                contents = repo.get_contents(self.data_file)
-                repo.update_file(
-                    contents.path, 
-                    f"Update portfolio: {datetime.now().strftime('%Y-%m-%d %H:%M')}", 
-                    json.dumps(self.data, indent=4, ensure_ascii=False), 
-                    contents.sha
-                )
+                try:
+                    contents = repo.get_contents(self.data_file)
+                    repo.update_file(
+                        contents.path, 
+                        f"Update portfolio: {datetime.now().strftime('%Y-%m-%d %H:%M')}", 
+                        json.dumps(self.data, indent=4, ensure_ascii=False), 
+                        contents.sha
+                    )
+                except Exception as file_err:
+                    if (hasattr(file_err, 'status') and file_err.status == 404) or "404" in str(file_err):
+                        repo.create_file(
+                            self.data_file,
+                            f"Create portfolio: {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+                            json.dumps(self.data, indent=4, ensure_ascii=False)
+                        )
+                    else:
+                        raise file_err
             except Exception as e:
                 st.error(f"Erro ao sincronizar com GitHub: {e}")
 
