@@ -18,11 +18,17 @@
             "ticker": "Aporte Ações",
             "total": 193.89000129699707,
             "rationale": "### 🎯 Aporte Focado: R$ 193.89\n- **BBAS3.SA**: 5 un. Desconto: **-28.0%**.\n- **WEGE3.SA**: 2 un. Desconto: **-20.9%**.\n"
+        },
+        {
+            "date": "2026-06-15 18:44",
+            "ticker": "PROVENTOS",
+            "total": 1.0967399597167968,
+            "rationale": "Dividendos mensais reinvestidos."
         }
     ],
-    "accumulated_dividends": 0.0,
+    "accumulated_dividends": 1.0967399597167968,
     "opportunity_reserve": 0.0,
-    "last_dividend_update": "2026-05-12",
+    "last_dividend_update": "2026-06-15",
     "target_allocation": {
         "Ações": 0.4,
         "FIIs": 0.4,
