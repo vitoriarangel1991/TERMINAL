@@ -20,6 +20,11 @@
             "qty": 1,
             "avg_price": 104.79000091552734,
             "type": "FIIs"
+        },
+        "GOLD11.SA": {
+            "qty": 5,
+            "avg_price": 22.190000534057617,
+            "type": "Estratégicos"
         }
     },
     "history": [
@@ -40,6 +45,12 @@
             "ticker": "Aporte FIIs",
             "total": 197.79000091552734,
             "rationale": "### 🎯 Aporte Focado: R$ 197.79\n- **XPLG11.SA**: 1 un. Desconto: **-12.9%**.\n- **VISC11.SA**: 1 un. Desconto: **-7.7%**.\n"
+        },
+        {
+            "date": "2026-06-23 20:06",
+            "ticker": "Aporte Estratégicos",
+            "total": 110.95000267028809,
+            "rationale": "### 🎯 Aporte Focado: R$ 110.95\n- **GOLD11.SA**: 5 un. Desconto: **-26.4%**.\n"
         }
     ],
     "accumulated_dividends": 0.0,
@@ -60,6 +71,11 @@
             "date": "2026-06-15",
             "portfolio_value": 380.48000144958496,
             "ibov_value": 170615.25
+        },
+        {
+            "date": "2026-06-23",
+            "portfolio_value": 495.37999153137207,
+            "ibov_value": 171518.53125
         }
     ]
 }
