@@ -25,6 +25,16 @@
             "qty": 5,
             "avg_price": 22.190000534057617,
             "type": "Estratégicos"
+        },
+        "RENT3.SA": {
+            "qty": 3,
+            "avg_price": 39.400001525878906,
+            "type": "Ações"
+        },
+        "PETR4.SA": {
+            "qty": 3,
+            "avg_price": 39.209999084472656,
+            "type": "Ações"
         }
     },
     "history": [
@@ -51,6 +61,12 @@
             "ticker": "Aporte Estratégicos",
             "total": 110.95000267028809,
             "rationale": "### 🎯 Aporte Focado: R$ 110.95\n- **GOLD11.SA**: 5 un. Desconto: **-26.4%**.\n"
+        },
+        {
+            "date": "2026-07-09 20:44",
+            "ticker": "Aporte Ações",
+            "total": 235.8300018310547,
+            "rationale": "### 🎯 Aporte Focado: R$ 235.83\n- **RENT3.SA**: 3 un. Desconto: **-26.1%**.\n- **PETR4.SA**: 3 un. Desconto: **-22.6%**.\n"
         }
     ],
     "accumulated_dividends": 0.0,
@@ -76,6 +92,11 @@
             "date": "2026-06-23",
             "portfolio_value": 495.37999153137207,
             "ibov_value": 171518.53125
+        },
+        {
+            "date": "2026-07-09",
+            "portfolio_value": 734.0200042724609,
+            "ibov_value": 172742.125
         }
     ]
 }
