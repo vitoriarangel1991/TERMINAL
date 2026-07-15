@@ -12,8 +12,8 @@
             "type": "Ações"
         },
         "XPLG11.SA": {
-            "qty": 1,
-            "avg_price": 93.0,
+            "qty": 2,
+            "avg_price": 91.5999984741211,
             "type": "FIIs"
         },
         "VISC11.SA": {
@@ -35,6 +35,11 @@
             "qty": 3,
             "avg_price": 39.209999084472656,
             "type": "Ações"
+        },
+        "MXRF11.SA": {
+            "qty": 13,
+            "avg_price": 9.720000267028809,
+            "type": "FIIs"
         }
     },
     "history": [
@@ -73,9 +78,15 @@
             "ticker": "PROVENTOS",
             "total": 4.426199993133545,
             "rationale": "Dividendos mensais reinvestidos."
+        },
+        {
+            "date": "2026-07-15 01:51",
+            "ticker": "Aporte FIIs",
+            "total": 216.5600004196167,
+            "rationale": "### 🎯 Aporte Focado: R$ 216.56\n- **XPLG11.SA**: 1 un. Desconto: **-15.5%**.\n- **MXRF11.SA**: 13 un. Desconto: **-2.8%**.\n"
         }
     ],
-    "accumulated_dividends": 4.426199993133545,
+    "accumulated_dividends": 0.0,
     "opportunity_reserve": 0.0,
     "last_dividend_update": "2026-07-15",
     "target_allocation": {
@@ -103,6 +114,11 @@
             "date": "2026-07-09",
             "portfolio_value": 734.0200042724609,
             "ibov_value": 172742.125
+        },
+        {
+            "date": "2026-07-15",
+            "portfolio_value": 954.2599992752075,
+            "ibov_value": 176641.09375
         }
     ]
 }
